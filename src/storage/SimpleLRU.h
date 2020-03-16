@@ -69,6 +69,10 @@ private:
     std::unique_ptr<lru_node> _lru_head;
     lru_node *_lru_tail;
 
+    void delete_node(lru_node * cur_to_del);
+    void add_node(const std::string &key,  const std::string &value);
+    void put_anyway(const std::string &key, const std::string &value);
+    void move_to_tail(std::unique_ptr<lru_node> &cur_node, const std::string &value);
     // Index of nodes from list above, allows fast random access to elements by lru_node#key
     std::map<std::reference_wrapper<const std::string>, std::reference_wrapper<lru_node>, std::less<std::string>> _lru_index;
 };
